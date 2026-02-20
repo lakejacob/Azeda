@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azeda | Crisp. Cool. Cultured.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1a2744;
+      --cream: #faf8f4;
+      --gold: #c8a96e;
+      --sage: #7a8b6f;
+      --soft-white: #ffffff;
+      --text-light: #5a6272;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      color: var(--navy);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(250, 248, 244, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(26, 39, 68, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .nav-logo {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--navy);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      background: linear-gradient(180deg, var(--cream) 0%, #f3f0ea 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(200, 169, 110, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 400;
+      color: var(--navy);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+      animation: fadeUp 1s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 400;
+      margin-bottom: 1rem;
+      animation: fadeUp 1s ease 0.2s forwards;
+      opacity: 0;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-light);
+      max-width: 500px;
+      line-height: 1.6;
+      margin-bottom: 3rem;
+      animation: fadeUp 1s ease 0.4s forwards;
+      opacity: 0;
+    }
+
+    .hero-image {
+      max-width: min(90vw, 750px);
+      animation: fadeUp 1.2s ease 0.6s forwards;
+      opacity: 0;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 20px 60px rgba(26, 39, 68, 0.12));
+    }
+
+    /* PRODUCTS */
+    .products {
+      padding: 6rem 2rem 7rem;
+      background: var(--soft-white);
+      position: relative;
+    }
+
+    .products::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 0.6rem;
+      color: var(--navy);
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 4rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 3rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-radius: 16px;
+      background: var(--cream);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(26, 39, 68, 0.08);
+    }
+
+    .product-card img {
+      height: 280px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--navy);
+    }
+
+    .product-price {
+      color: var(--gold);
+      font-size: 0.95rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+    }
+
+    /* STORY */
+    .story {
+      padding: 7rem 2rem;
+      background: var(--navy);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200, 169, 110, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .story-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .story-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .story-images img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      opacity: 0.9;
+    }
+
+    .story-images img:first-child {
+      grid-column: 1 / -1;
+      height: 200px;
+    }
+
+    .story-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      color: var(--cream);
+    }
+
+    .story-text p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: rgba(250, 248, 244, 0.75);
+      margin-bottom: 1.2rem;
+    }
+
+    .story-text .motto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--gold);
+      margin-top: 1.5rem;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: var(--cream);
+    }
+
+    .contact h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .contact-details a {
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      transition: color 0.3s;
+    }
+
+    .contact-details a:hover {
+      color: var(--gold);
+    }
+
+    .contact-block {
+      text-align: left;
+    }
+
+    .contact-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      background: var(--navy);
+      color: rgba(250, 248, 244, 0.4);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 0.75rem;
+      }
+
+      .story-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .story-images {
+        order: -1;
+      }
+
+      .product-grid {
+        gap: 2rem;
+      }
+
+      .contact-details {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .contact-block {
+        text-align: center;
+      }
+    }
+
+    /* HAMBURGER - tiny screens */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 1.5px;
+      background: var(--navy);
+      transition: all 0.3s;
+    }
+
+    @media (max-width: 480px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links.open {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(250, 248, 244, 0.97);
+        backdrop-filter: blur(12px);
+        padding: 1.5rem 2rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid rgba(26, 39, 68, 0.06);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <img 
+      src="https://images.squarespace-cdn.com/content/v1/6946252e77e8d24812fd6552/15da3ced-6dd3-4297-849c-76dec1414fb8/Elegant+_Azeda_+logo+in+navy+script.PNG?format=300w" 
+      alt="Azeda" 
+      class="nav-logo"
+    >
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tagline">Crisp · Cool · Cultured</div>
+    <h1 class="hero-brand">Azeda</h1>
+    <p class="hero-subtitle">Lightly seasoned buttermilk that will leave you craving more</p>
+    <div class="hero-image">
+      <img 
+        src="https://images.squarespace-cdn.com/content/v1/6946252e77e8d24812fd6552/dd1e206e-8025-451a-8b9e-f27a85e8bfc5/drink_lineup.png?format=1500w" 
+        alt="Azeda buttermilk drink lineup"
+      >
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="products">
+    <h2 class="section-title reveal">Our Flavors</h2>
+    <p class="section-sub reveal">Three unique blends, crafted in Burley, Idaho</p>
+    <div class="product-grid">
+      <div class="product-card reveal">
+        <img 
+          src="https://images.squarespace-cdn.com/content/v1/6946252e77e8d24812fd6552/3dd4ee53-192d-4321-b659-ced47b2f0d8d/tarragon_green_apple_clear.png?format=750w" 
+          alt="Tarragon & Green Apple Buttermilk"
+        >
+        <div class="product-name">Tarragon & Green Apple</div>
+        <div class="product-price">$3.29</div>
+      </div>
+      <div class="product-card reveal">
+        <img 
+          src="https://images.squarespace-cdn.com/content/v1/6946252e77e8d24812fd6552/92c6ecbe-64dd-4072-8160-0239ec826724/apple_cider_cardamom2.png?format=750w" 
+          alt="Apple Cider, Cardamom & Salt Buttermilk"
+        >
+        <div class="product-name">Apple Cider, Cardamom & Salt</div>
+        <div class="product-price">$3.29</div>
+      </div>
+      <div class="product-card reveal">
+        <img 
+          src="https://images.squarespace-cdn.com/content/v1/6946252e77e8d24812fd6552/7908ff76-2633-4ff2-8821-759dcba1fed1/blackberry_sage_maple2.png?format=750w" 
+          alt="Blackberry, Sage & Maple Buttermilk"
+        >
+        <div class="product-name">Blackberry, Sage & Maple</div>
+        <div class="product-price">$3.29</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story" id="story">
+    <div class="story-inner">
+      <div class="story-images reveal">
+        <img 
+          src="https://images.squarespace-cdn.com/content/v1/6946252e77e8d24812fd6552/f31ed865-4384-4edf-be97-2e0bb2a7cf45/IMG_4561.jpeg?format=750w" 
+          alt="Azeda farm"
+        >
+        <img 
+          src="https://images.squarespace-cdn.com/content/v1/6946252e77e8d24812fd6552/5989df1b-4b58-49a0-9a15-0aeaf32aa810/71457490782__D62E0122-C985-4FB7-ADD4-34A88D358D16+%281%29.jpeg?format=500w" 
+          alt="Making Azeda"
+        >
+        <img 
+          src="https://images.squarespace-cdn.com/content/v1/6946252e77e8d24812fd6552/dd1e206e-8025-451a-8b9e-f27a85e8bfc5/drink_lineup.png?format=500w" 
+          alt="Azeda drinks"
+        >
+      </div>
+      <div class="story-text reveal">
+        <h2>Our Story</h2>
+        <p>Our family loves good food — that's part of being raised on a farm in Idaho. We're always tinkering in the kitchen, looking for new tastes and exploring interesting ideas.</p>
+        <p>After a butter-making project, we found ourselves with a couple gallons of fresh buttermilk. No one can eat that many buttermilk biscuits, so we spent the next few days experimenting with different ingredients. We were amazed at how much we loved the drinks.</p>
+        <p>Buttermilk is a superfood — packed with protein, probiotic cultures, electrolytes, and a beautiful light, tangy flavor that combines beautifully with savory and sweet ingredients.</p>
+        <div class="motto">Not your grandma's buttermilk.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <h2 class="reveal">Get In Touch</h2>
+    <div class="contact-details reveal">
+      <div class="contact-block">
+        <div class="contact-label">Location</div>
+        125 W. 500 S.<br>Burley, ID 83318
+      </div>
+      <div class="contact-block">
+        <div class="contact-label">Email</div>
+        <a href="mailto:info@drinkazeda.com">info@drinkazeda.com</a>
+      </div>
+      <div class="contact-block">
+        <div class="contact-label">Phone</div>
+        <a href="tel:+12084319553">(208) 431-9553</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 Azeda. All rights reserved.
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Hamburger
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Close menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
